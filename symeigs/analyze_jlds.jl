@@ -38,7 +38,9 @@ cum_fragile_count = Dict{Tuple{Integer, Integer, String}, Vector{Integer}}();
 num_bands_count = Dict{Tuple{Integer, Integer, String}, Vector{Vector{Integer}}}();
 
 for (key, val) in num_bands
-	num_bands_count[key] = [[count(x -> x[i] == j, filter(x -> length(x) >= i, val)) for j in 1:4] for i in 1:5]
+#	num_bands_count[key] = [[count(x -> x[i] == j, filter(x -> length(x) >= i, val)) for j in 1:4] for i in 1:5]
+	num_bands_count[key] = [[ (j < 5 ? count(x -> x[i] == j, filter(x -> length(x) >= i, val)) : count(x -> x[i] >= j,
+		 filter(x -> length(x) >= i, val))) for j in 1:5] for i in 1:5]
 end
 
 for (key, val) in topologies
