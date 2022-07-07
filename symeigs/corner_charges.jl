@@ -1,3 +1,28 @@
+function n_irlabs(bandsummary::BandSummary)
+    irlabs = bandsummary.brs.irlabs
+    n = bandsummary.n
+    return n, irlabs
+end
+
+function find_diff(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, k1labs::Vector{<:AbstractString},
+    k2labs::Vector{<:AbstractString})
+    
+    k1_idxs = findall(x-> ∈(x, k1labs), irlabs)
+    k2_idxs = findall(x-> ∈(x, k2labs), irlabs)
+ 
+    return sum(n[k1_idxs]) - sum(n[k2_idxs])
+end
+
+corner_c2(x1::Real, x2::Real, x3::Real) =  mod(1/4*(-x1 -x2 + x3), 1)
+corner_c3(x::Real) =  mod(1/3*x, 1)
+corner_c4(x1::Real, x2::Real, x3::Real) =  mod(1/4*(x1 + 2*x2 + 3*x3), 1)
+corner_c6(x1::Real, x2::Real) =  mod(1/4*x1 + 1/6*x2, 1)
+
+polarization_c2(x1::Real, x2::Real) = [mod(1/2*x1, 1), mod(1/2*x2, 1)]
+polarization_c3(x1::Real, x2::Real) = mod(2/3*x1 + 4/3*x2, 1)*[1, 1]
+polarization_c4(x::Real) = mod(1/2*x, 1)*[1, 1]
+
+
 function corners(bandsummary::BandSummary, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
     if bandsummary.brs.sgnum == 2
         return corner_sg2(bandsummary, wyckoff)
