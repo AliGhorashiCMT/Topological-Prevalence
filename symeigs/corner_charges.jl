@@ -1,9 +1,17 @@
+
+"""
+General function to return the symmetry vector and the corresponding irrep labels
+"""
 function n_irlabs(bandsummary::BandSummary)
     irlabs = bandsummary.brs.irlabs
     n = bandsummary.n
     return n, irlabs
 end
 
+"""
+Returns the difference in the number of bands in a certain representation at one k point and the number of bands in a certain representation 
+at another k point.
+"""
 function find_diff(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, k1labs::Vector{<:AbstractString},
     k2labs::Vector{<:AbstractString})
     
@@ -12,6 +20,7 @@ function find_diff(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, k1lab
  
     return sum(n[k1_idxs]) - sum(n[k2_idxs])
 end
+
 
 corner_c2(x1::Real, x2::Real, x3::Real) =  mod(1/4*(-x1 -x2 + x3), 1)
 corner_c3(x::Real) =  mod(1/3*x, 1)
