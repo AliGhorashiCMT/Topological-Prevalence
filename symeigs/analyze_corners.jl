@@ -26,6 +26,8 @@ for mode in ["te", "tm"]
 end
 
 corner_charges = Dict{Tuple{Integer, Integer, String, WyckoffPosition{2}}, Vector{Vector{Integer}}}();
+cum_corner_charges = Dict{Tuple{Integer, Integer, String, WyckoffPosition{2}}, Vector{Vector{Integer}}}();
+wyckoff_degeneracy = Dict{Tuple{Integer, Integer, String}, Vector{Vector{Integer}}}();
 
 sg_wyckoffs = sg_wyckoffs_dict[sg]
 
@@ -36,8 +38,22 @@ for (key, val) in JLD2_DATA
         end
 end
 
+for (key, val) in JLD2_DATA
+        for wyckoff in sg_wyckoffs
+                cum_corner_charges[key..., wyckoff] =  [[count(x -> (isapprox(corners(x[i], wyckoff)*12, j) &&
+                    isapprox(polarizations(x[i], wyckoff), zeros(2))), filter(x -> length(x) >= i, val["cumsummariesv"])) for j in 1:11 ] for i in 1:5]
+        end
+end
+
+for (key, val) in JLD2_DATA
+	wyckoff_degeneracy[key...] =  [[count(x -> (count(wyckoff -> !isapprox(corners(x[i], wyckoff), 0, atol=1e-2) &&
+		isapprox(polarizations(x[i], wyckoff), zeros(2), atol=1e-2), sg_wyckoffs)) >= j, filter(x -> length(x) >= i, val["summariesv"])) for j in 1:6] for i in 1:5]
+end
+
 
 filename = "./sg$(sg)-corner-data.jld2"
 jldopen(filename, "w") do fid
 	fid["corner_charges"] = corner_charges
+	fid["cum_corner_charges"] = cum_corner_charges
+	fid["wyckoff_degeneracy"] = wyckoff_degeneracy
 end
