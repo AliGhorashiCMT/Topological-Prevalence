@@ -303,14 +303,31 @@ end
 
 function corner_sg15(bandsummary::BandSummary, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
     n, irlabs = n_irlabs(bandsummary)
-    diff1 = find_diff(n, irlabs, ["K₃"], ["Γ₃"])
-    return corner_c3(diff1)
+    diffK = 
+        if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+            find_diff(n, irlabs, ["K₃"], ["Γ₃"])
+        elseif wyckoff == WyckoffPosition(2, 'b', RVec([1/3, 2/3]))
+            find_diff(n, irlabs, ["K₃"], ["Γ₃"])
+        elseif wyckoff == WyckoffPosition(2, 'c', RVec([2/3, 1/3]))
+            find_diff(n, irlabs, ["K₁", "K₂"], ["Γ₃"])
+        end
+    return corner_c3(diffK)
 end
 
 function polarization_sg15(bandsummary::BandSummary, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
     n, irlabs = n_irlabs(bandsummary)
-    diffK1 = find_diff(n, irlabs, ["K₁", "K₂"], ["Γ₁", "Γ₂"])
-    diffK2 = find_diff(n, irlabs, ["K₃"], ["Γ₃"])
+    diffK1, diffK2 = 
+    if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+        find_diff(n, irlabs, ["K₁", "K₂"], ["Γ₁", "Γ₂"]), 
+        find_diff(n, irlabs, ["K₃"], ["Γ₃"])
+    elseif wyckoff == WyckoffPosition(2, 'b', RVec([1/3, 2/3]))
+        find_diff(n, irlabs, ["K₃"], ["Γ₁", "Γ₂"]), 
+        find_diff(n, irlabs, ["K₃"], ["Γ₃"])
+    elseif wyckoff == WyckoffPosition(2, 'c', RVec([2/3, 1/3]))
+        find_diff(n, irlabs, ["K₃"], ["Γ₁", "Γ₂"]), 
+        find_diff(n, irlabs, ["K₁", "K₂"], ["Γ₃"])
+    end
+    
     return polarization_c3(diffK1, diffK2)
 end
 
