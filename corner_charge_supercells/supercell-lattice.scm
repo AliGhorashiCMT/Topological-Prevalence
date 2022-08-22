@@ -11,6 +11,7 @@
 (define-param epsout-clad 1.0)
 (define-param supercell 1)
 (define-param cladding 0.5)
+(define-param relative-shift (vector3 0 0 0))
 
 (cond 
     ((equal? dim 2) ; 2D
@@ -45,7 +46,7 @@
 	 (cond ((< (calc-fourier-sum-fast r) uc-level) epsin)
           (else epsout)))
     (else 
-	(cond ((< (calc-fourier-sum-fast-clad r) uc-level-clad) epsin-clad)
+	(cond ((< (calc-fourier-sum-fast-clad (vector3+ r relative-shift)) uc-level-clad) epsin-clad)
 	(else epsout-clad))
     ))
     )
