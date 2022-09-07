@@ -2,3 +2,8 @@ Summary of Wilson Loops:
 
 Spacegroup 11: id=8365, mode=tm, fragile bands:7-8
 Spacegroup 6: id=8180, mode=tm, fragile bands:8-9
+
+For C3 Systems, we use wilson loops that span from gamma to some fraction of the K point. We successively do these loops until the fraction reaches 1.
+
+Spacegroup 13 (C3 Rotational Symmetry): id=7966, mode=tm, fragile bands: 6-7, id=6470, mode=tm, fragile bands:6-7. id=983, mode=tm, fragile band: 6-7.
+Spacegroup 14: id=2398, mode=tm, fragile bands: 6-7
