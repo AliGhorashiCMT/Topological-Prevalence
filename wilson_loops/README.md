@@ -7,3 +7,4 @@ For C3 Systems, we use wilson loops that span from gamma to some fraction of the
 
 Spacegroup 13 (C3 Rotational Symmetry): id=7966, mode=tm, fragile bands: 6-7, id=6470, mode=tm, fragile bands:6-7. id=983, mode=tm, fragile band: 6-7.
 Spacegroup 14: id=2398, mode=tm, fragile bands: 6-7
+Spacegroup 15: id=8928, mode=tm, fragile bands:9-10
