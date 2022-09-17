@@ -7,7 +7,7 @@ JLD2_DATA = Dict{Tuple{Integer, Integer, String}, Dict{String, Any}}()
 for mode in ["te", "tm"]
     println("Analyzing mode: $mode\n")
     flush(stdout)
-    for id_eps in 1:3
+    for id_eps in 1:5
         println("Analyzing id_eps : ", id_eps)
         flush(stdout)
         dir = "./output/sg$(sg)/eps$(id_eps)/$(mode)/"
