@@ -10,21 +10,21 @@ for mode in ["te", "tm"]
     for id_eps in 1:5
         println("Analyzing id_eps : ", id_eps)
         flush(stdout)
-        dir = "./output/sg$(sg)/eps$(id_eps)/$(mode)/"
-        filename = dir*"sg$(sg)-epsid$(id_eps)-res64-$(mode).jld2"
+        dir = "./output/sg$(sg)/eps$(id_eps)/$(mode)/" # Directory of the jld2 data file for the particular mode and contrast
+        filename = dir*"sg$(sg)-epsid$(id_eps)-res64-$(mode).jld2" 
         loaded_data = load(filename)
         JLD2_DATA[(sg, id_eps, mode)] = loaded_data
     end
 end
 
-topologies = Dict{Tuple{Integer, Integer, String}, Vector{Vector{TopologyKind}}}();
-cum_topologies = Dict{Tuple{Integer, Integer, String}, Vector{Vector{TopologyKind}}}();
-num_bands = Dict{Tuple{Integer, Integer, String}, Vector{Vector{Integer}}}();
+topologies = Dict{Tuple{Integer, Integer, String}, Vector{Vector{TopologyKind}}}(); # Topologies for each compatible set of band
+cum_topologies = Dict{Tuple{Integer, Integer, String}, Vector{Vector{TopologyKind}}}(); # Topologies from the first band up
+num_bands = Dict{Tuple{Integer, Integer, String}, Vector{Vector{Integer}}}(); # Number of bands in each compatible set of bands
 
 for (key, val) in JLD2_DATA
-    topologies[key] = [[summary.topology for summary in summaryvec] for summaryvec in val["summariesv"]];
-    cum_topologies[key] = [[summary.topology for summary in summaryvec] for summaryvec in val["cumsummariesv"]];
-    num_bands[key] = [[last(summary.n) for summary in summaryvec] for summaryvec in val["summariesv"]];
+    topologies[key] = [[summary.topology for summary in summaryvec] for summaryvec in val["summariesv"]]; # Vector of Vector of topologies
+    cum_topologies[key] = [[summary.topology for summary in summaryvec] for summaryvec in val["cumsummariesv"]]; # Vector of Vector of cumulative topologies
+    num_bands[key] = [[last(summary.n) for summary in summaryvec] for summaryvec in val["summariesv"]]; # Vector of vector of numbers of bands in each compatible set
 end
 
 trivial_count =  Dict{Tuple{Integer, Integer, String}, Vector{Integer}}();
@@ -38,9 +38,9 @@ cum_fragile_count = Dict{Tuple{Integer, Integer, String}, Vector{Integer}}();
 num_bands_count = Dict{Tuple{Integer, Integer, String}, Vector{Vector{Integer}}}();
 
 for (key, val) in num_bands
-#	num_bands_count[key] = [[count(x -> x[i] == j, filter(x -> length(x) >= i, val)) for j in 1:4] for i in 1:5]
 	num_bands_count[key] = [[ (j < 5 ? count(x -> x[i] == j, filter(x -> length(x) >= i, val)) : count(x -> x[i] >= j,
 		 filter(x -> length(x) >= i, val))) for j in 1:5] for i in 1:5]
+	# (filter x -> length(x) >= i) is so we don't get errors if we try to index a vector of summaries with length less than i. 
 end
 
 for (key, val) in topologies
@@ -59,7 +59,7 @@ for (key, val) in cum_topologies
         cum_trivial_count[key] = [
             count(x -> x[i] == TopologyKind(0), filter(x -> length(x) >= i, val))
             for i in 1:5 ]
-    	cum_stable_count[key] = [
+	cum_stable_count[key] = [
             count(x -> x[i] == TopologyKind(1), filter(x -> length(x) >= i, val))
             for i in 1:5 ]
 	cum_fragile_count[key] = [ 
