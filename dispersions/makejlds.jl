@@ -29,7 +29,7 @@ for mode in ["te", "tm"]
 	    for cumsummary in cumsummaries
 		top_band = cumsummary.band[end]
 		top_band >= 40 && continue
-		margin = minimum(dispersions[:, top_band+1] - dispersions[:, top_band])
+		margin = minimum(dispersions[:, top_band+1]) - maximum(dispersions[:, top_band])
 	    	push!(margins, margin)
 	    end
 	    marginsv[id] = margins
@@ -38,6 +38,7 @@ for mode in ["te", "tm"]
         jldopen(filename, "w") do fid
             fid["dispersionsv"] = dispersionsv
 	    fid["marginsv"] = marginsv
+	    fid["cumsummariesv"] = cumsummareisv
 	end
     end
 end
