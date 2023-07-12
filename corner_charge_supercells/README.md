@@ -1,3 +1,8 @@
-# Derivation of the c6 supercell cell bounds
+# Derivation of the c6 Wigner-Seitz cell bounds
 
-Since the lattice vectors are $(1, 0)$, $(-1/2, \sqrt{3}/2)$ in Cartesian coordinates,  
+Since the lattice vectors of a c6 symmetric lattice are $(1, 0)$, $(-1/2, \sqrt{3}/2)$ in Cartesian coordinates, the Wigner-Seitz cell limits are $-\frac{1}{2} < x < \frac{1}{2}$ (horizontal limits) and two analogous limits obtained by rotating the previous limits by 60 and 120 degrees: $-\frac{1}{2} < \cos(60)*x + \sin(60)*y < \frac{1}{2}$, $-\frac{1}{2} < \cos(120)*x +\sin(120)*y < \frac{1}{2}$. Therefore, in cartesian coordinates, our limits are: 
+
+1. $-\frac{1}{2} < x < \frac{1}{2}$
+2. $-\frac{1}{2} < \frac{x}{2}+\frac{\sqrt{3}y}{2} < \frac{1}{2}$
+3. $-\frac{1}{2} < -\frac{x}{2}+\frac{\sqrt{3}y}{2} < \frac{1}{2}$
+
