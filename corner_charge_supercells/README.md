@@ -6,3 +6,7 @@ Since the lattice vectors of a c6 symmetric lattice are $(1, 0)$, $(-1/2, \sqrt{
 2. $-\frac{1}{2} < \frac{x}{2}+\frac{\sqrt{3}y}{2} < \frac{1}{2}$
 3. $-\frac{1}{2} < -\frac{x}{2}+\frac{\sqrt{3}y}{2} < \frac{1}{2}$
 
+Substituting $(x, y) \rightarrow (x-\frac{y}{2}, \frac{\sqrt{3}y}{2})$ (in order to write everything in terms of lattice coordinates), we obtain: 
+1. $-1 < 2x-y < 1$
+2. $-1 < x+y < 1$
+3. $-1 < 2y-x < 1$
