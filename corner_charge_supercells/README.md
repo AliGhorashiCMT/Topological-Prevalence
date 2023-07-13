@@ -15,15 +15,16 @@ Substituting $(x, y) \rightarrow (x-\frac{y}{2}, \frac{\sqrt{3}y}{2})$ (in order
 
 The lattice vectors of a c3 symmetric lattice are, just as for the c6 symmetric lattice, $(1, 0)$, $(-1/2, \sqrt{3}/2)$ in Cartesian coordinates. 
 
-Take one of the vertices to be at $(0, \sqrt{3}c)$. Then the two other vertices are located at (by 120 and -120 degree rotations of the first vertex) $(\pm 3c/2, -\sqrt{3}c/2)$
+Take one of the vertices to be at $(0, c/\sqrt{3})$. Then the two other vertices are located at (by 120 and -120 degree rotations of the first vertex) $(\pm c/2, -c/(2\sqrt{3}))$
 
 Therefore, the bounds are (in Cartesian coordinates) 
 
-1. $y > -\sqrt{3}c/2$
-2. $y < -\sqrt(3)x + \sqrt{3}c$
-3. $y < \sqrt{3}x  + \sqrt{3}c$
+1. $y > -c/(2\sqrt{3})$
+2. $y < -\sqrt(3)x + c/\sqrt{3}$
+3. $y < \sqrt{3}x  + c/\sqrt{3}$
 
-Transforming to lattice coordinates ($(x, y) \rightarrow (x-\frac{y}{2}, \frac{\sqrt{3}y}{2})$), we obtain
+Transforming to lattice coordinates $(x, y) \rightarrow (x-\frac{y}{2}, \frac{\sqrt{3}y}{2})$ , we obtain
 
-1.  
-5. 
+1.  $y+c/3 > 0$
+2.  $c/3 - x > 0$
+3.  $x - y + c/3 > 0$
