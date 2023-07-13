@@ -10,3 +10,9 @@ Substituting $(x, y) \rightarrow (x-\frac{y}{2}, \frac{\sqrt{3}y}{2})$ (in order
 1. $-1 < 2x-y < 1$
 2. $-1 < x+y < 1$
 3. $-1 < 2y-x < 1$
+
+# Derivation of the c3 supercell bounds
+
+The lattice vectors of a c3 symmetric lattice are, just as for the c6 symmetric lattice, $(1, 0)$, $(-1/2, \sqrt{3}/2)$ in Cartesian coordinates. 
+
+Take one of the vertices to be at $(0, \sqrt{3}c)$. Then the two other vertices are located at (by 120 and -120 degree rotations of the first vertex) $(\pm 3/2, -\sqrt{3}/2)$
