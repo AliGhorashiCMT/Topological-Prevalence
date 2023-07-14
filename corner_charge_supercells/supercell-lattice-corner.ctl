@@ -9,6 +9,8 @@
 (define-param kvecs   '())    ; list of k-vectors (list of kvecs or string to kvecs data file)
 (define-param kvecs-restart-idx 0) ; optional restarting point in kvecs
 (define-param nbands   12)    ; # of bands to compute
+(define-param lowest-band 1) ; lowest band for which to output spatial information
+(define-param highest-band 100) ; highest band for which to output spatial information
 (define-param arrayidx '())
 
 (include "supercell-lattice.scm")
@@ -70,6 +72,14 @@
 (run-parity p true)
 
 (output-epsilon)
+
 (define (output-all-dpwr ntotal n) (cond ((<= n ntotal) (output-dpwr n) (output-all-dpwr ntotal (+ n 1)) )))
-(output-all-dpwr num-bands 1)
+(output-all-dpwr (min num-bands highest-band) lowest-band) ; If highest-band is accidentally larger than the total number of bands we only output up to num-bands
+
+(define (output-all-hz ntotal n) (cond ((<= n ntotal) (output-hfield-z n) (output-all-hz ntotal (+ n 1)) )))
+(cond ( (string=? run-type "te") (output-all-hz (min num-bands highest-band) lowest-band)))
+
+(define (output-all-dz ntotal n) (cond ((<= n ntotal) (output-dfield-z n) (output-all-dz ntotal (+ n 1)) )))
+(cond ((string=? run-type "tm") (output-all-dz (min num-bands highest-band) lowest-band)))
+
 (quit)
