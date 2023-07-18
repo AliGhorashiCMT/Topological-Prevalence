@@ -14,9 +14,9 @@ for mode in ["te", "tm"]
         input_dir = "./input/"
 	output_dir = "./output/sg$(sg)/eps$(id_eps)/$(mode)/"
 	
-	Rsv = DirectBasis{2}[]
-	isovalv = Float64[]
-	flatv = ModulatedFourierLattice{2}[]
+	Rsv = DirectBasis{2}[] # Vector of lattice vectors
+	isovalv = Float64[] # Vector of isovalues- which determine the fillings of the Fourier lattices
+	flatv = ModulatedFourierLattice{2}[] # Vector of fourier lattices, which provide compatible coefficients for G vectors of the underlying plane group
 
 	for id in 1:10000
 		Rs, flat, isoval, _  = lattice_from_mpbparams(input_dir*"dim2-sg$sg-$(id+(id_eps-1)*10000)-res64-$mode.sh")
