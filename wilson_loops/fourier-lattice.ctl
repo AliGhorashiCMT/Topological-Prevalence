@@ -1,6 +1,5 @@
 (include "aux-functionality.scm")
 (include "berry-phase.scm")
-(include "print-symeigs.scm")
 
 (define-param run-type "all") ; ("all", "te", "tm"); optionally set at geometry-creation
 (define-param dim      3)     ; dimension
