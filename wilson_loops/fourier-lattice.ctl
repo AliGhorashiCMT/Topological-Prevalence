@@ -10,7 +10,6 @@
 (define-param kvecs   '())    ; list of k-vectors (list of kvecs or string to kvecs data file)
 (define-param kvecs-restart-idx 0) ; optional restarting point in kvecs
 (define-param nbands   12)    ; # of bands to compute
-(define-param Ws      '())    ; point group parts of symops; see SYMMETRY EIGENVALUES part
 
 (include "level-set-fourier-lattice.scm")
 (set! filename-prefix (string-append prefix "-"))
@@ -53,14 +52,7 @@
                 ((string=? run-type "te")   TE)           ; ≡ EVEN-Z ≡ 1
                 ((string=? run-type "tm")   TM)))         ; ≡ ODD-Z  ≡ 2
 
-(cond ; run-parity is effectively equivalent to run, run-te, run-tm, etc.:
-      ; like them, it also implicitly sets the global symmetry constraint (to p)
-      ((and (null? Ws) (not (null? k-points))) (run-parity p true))
-
-      ; otherwise, we just set the global symmetry constraint setting explicitly
-      ; so we can later call (solve-kpoint ...)
-      (else (init-params p true))
-)
+(init-params p true)
 
 (define-param berry-bool       true) ; Note that we have now set the default value of berry-bool to true- since all calculations herein involve Berry phases 
 (define-param berry-ks-loops   '())
@@ -94,8 +86,6 @@
     )
 ))
 
-(define-param ws      '())
-(define-param opidxs  '())
 ; Note that we do not calculate symmetry eigenvalues
 
 (quit)
