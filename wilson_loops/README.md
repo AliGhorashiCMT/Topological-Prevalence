@@ -1,3 +1,5 @@
+Herein, we calculate Wilson loops (Berry phases) in order to validate the topological classifications made through our TQC approach. 
+
 Summary of Wilson Loops:
 
 Spacegroup 11: id=8365, mode=tm, fragile bands:7-8
