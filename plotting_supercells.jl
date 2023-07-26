@@ -2,10 +2,10 @@ shapely_point = pyimport("shapely.geometry").Point
 shapely_polygon = pyimport("shapely.geometry.polygon").Polygon
 
 function bulk_vals(val, isoval)
-    val < isoval ? 50 : 250
+    val < isoval ? 500 : 10000
 end
 function clad_vals(val, isoval)
-    val < isoval ? 150 : 250
+    val < isoval ? -500 : 10000
 end
 
 function supercell_plot(flat_bulk::Crystalline.AbstractFourierLattice{2}, flat_clad::Crystalline.AbstractFourierLattice{2}, Rs::DirectBasis{2}, c::Cell{2}, isoval_bulk::Real, isoval_clad::Real; N::Integer=500,  fig=nothing, ax=nothing, translation_vector::Vector{<:Real} = zeros(2), xyz::Union{AbstractRange, Nothing}=nothing, supercell::Integer=1, kwargs...)
@@ -49,7 +49,7 @@ function plotiso_supercell(xyz, vals_bulk, vals_clad, Rs::DirectBasis{2}, c::Cel
     # Relative shift takes into account whether we have shifted the cladding wrt the bulk (for instance when we use the same crystal for both just with a relative shift to make one have nonzero corner charge
     
     #ax.contourf(X,Y,vals; levels=(-1e6, 0, 1e6), cmap=plt.get_cmap("gray", 2), kwargs...) 
-    ax.contourf(X,Y,vals; levels=(-1e6, 0, 100, 200, 1e6), cmap=plt.get_cmap("gray", 4), kwargs...) 
+    ax.contourf(X,Y,vals; levels=(-1e6, -1000, 0, 1000, 1e6), cmap=plt.get_cmap("gray", 4), kwargs...) 
     ax.set_aspect("equal", adjustable="box")
     ax.set_axis_off()
  end
