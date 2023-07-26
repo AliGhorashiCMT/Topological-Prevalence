@@ -1,6 +1,13 @@
 shapely_point = pyimport("shapely.geometry").Point
 shapely_polygon = pyimport("shapely.geometry.polygon").Polygon
 
+function bulk_vals(val, isoval)
+    val < isoval ? 50 : 250
+end
+function clad_vals(val, isoval)
+    val < isoval ? 150 : 250
+end
+
 function supercell_plot(flat_bulk::Crystalline.AbstractFourierLattice{2}, flat_clad::Crystalline.AbstractFourierLattice{2}, Rs::DirectBasis{2}, c::Cell{2}, isoval_bulk::Real, isoval_clad::Real; N::Integer=500,  fig=nothing, ax=nothing, translation_vector::Vector{<:Real} = zeros(2), xyz::Union{AbstractRange, Nothing}=nothing, supercell::Integer=1, kwargs...)
 
     xyz = (isnothing(xyz) ? range(-0.75, 0.75, length=N) : xyz)
@@ -8,8 +15,8 @@ function supercell_plot(flat_bulk::Crystalline.AbstractFourierLattice{2}, flat_c
     vals_bulk = Crystalline.calcfouriergridded(xyz, flat_bulk, length(xyz)) # Calculate fourier lattice values for bulk 
     vals_clad = Crystalline.calcfouriergridded(xyz, flat_clad, length(xyz)) # Calculate fourier lattice values for cladding
     
-    vals_bulk = -(vals_bulk .< isoval_bulk).*1000 .+ 500
-    vals_clad = -(vals_clad .< isoval_clad).*1000 .+ 500
+    vals_bulk = bulk_vals.(vals_bulk, Ref(isoval_bulk))#-(vals_bulk .< isoval_bulk).*600 .+ 300
+    vals_clad = clad_vals.(vals_clad, Ref(isoval_clad))#-(vals_clad .< isoval_clad).*300 .+ 150
 
     plotiso_supercell(xyz, vals_bulk, vals_clad, Rs, c, fig, ax, translation_vector, supercell; kwargs...)
 end
@@ -41,7 +48,8 @@ function plotiso_supercell(xyz, vals_bulk, vals_clad, Rs::DirectBasis{2}, c::Cel
     vals =  vals_bulk .* in_polygon_vals + np.roll(vals_clad, relative_shift, axis=[1, 0]) .* (1 .- in_polygon_vals)
     # Relative shift takes into account whether we have shifted the cladding wrt the bulk (for instance when we use the same crystal for both just with a relative shift to make one have nonzero corner charge
     
-    ax.contourf(X,Y,vals; levels=(-1e6, 0, 1e6), cmap=plt.get_cmap("gray", 2), kwargs...) 
+    #ax.contourf(X,Y,vals; levels=(-1e6, 0, 1e6), cmap=plt.get_cmap("gray", 2), kwargs...) 
+    ax.contourf(X,Y,vals; levels=(-1e6, 0, 100, 200, 1e6), cmap=plt.get_cmap("gray", 4), kwargs...) 
     ax.set_aspect("equal", adjustable="box")
     ax.set_axis_off()
  end
