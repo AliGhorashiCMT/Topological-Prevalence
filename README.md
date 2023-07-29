@@ -13,7 +13,11 @@ Pdf files of the bar graphs used in figure 2
 Pdf files of the bar graphs used in figure 3
 ### Directory: Sheets of Lattices
 ### Contents:
-Pdf files of many examples of Fourier lattices- used in the supplementary to evince diversity of our dataset. 
+Pdf files of many examples of Fourier lattices- used in the supplementary to evince diversity of our dataset. For each spacegroup, 
+sg, you'll find a pdf will file name sg$sg-sheets.pdf with 96 randomly sampled Fourier lattice examples (displayed in a 12x8 grid)
+that were used in our data analysis.
+### Directory: Sobol_Figs
+Pdf files displaying comparisons of statistics aggregated from random Fourier lattice sampling and Sobol Fourier lattice sampling.
 
 ### Relevant julia files: 
 1. ./symeigs/wyckoffs_dict.jl : Enumerates the wyckoff positions for each space group that maintain C_n rotational symmetry
