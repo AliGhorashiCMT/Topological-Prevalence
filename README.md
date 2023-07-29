@@ -27,6 +27,9 @@ $\varepsilon = \varepsilon_{in}$.
 ### Directory: Nodal_Point_Figs
 ### Contents: 
 Figures displaying the the locations of nodal points within the Brillouin zone. 
+### Directory: Tight Binding Models
+### Contents:
+Tight binding models for more tractable corner charge simulations (not used in the paper but more for sanity checking). 
 
 
 ### Relevant julia files: 
