@@ -18,7 +18,10 @@ sg, you'll find a pdf will file name sg$sg-sheets.pdf with 96 randomly sampled F
 that were used in our data analysis.
 ### Directory: Sobol_Figs
 Pdf files displaying comparisons of statistics aggregated from random Fourier lattice sampling and Sobol Fourier lattice sampling.
-
+### Directory; Fillings_Figs
+Pdf files displaying our statistics of photonic topology as a function of filling fraction, defined as $\Omega_{\varepsilon_{in}}/\Omega$, 
+where $\Omega$ is the are of the unit cell and $\Omega_{\varepsilon_{in}}$ is the area of the 2D Fourier lattice with
+$\varepsilon = \varepsilon_{in}$.
 ### Relevant julia files: 
 1. ./symeigs/wyckoffs_dict.jl : Enumerates the wyckoff positions for each space group that maintain C_n rotational symmetry
 2. ./plotting_utilities.jl : Methods for plotting Fourier lattices at high resolution. One passes a Fourier lattice "flat" along with
