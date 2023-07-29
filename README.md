@@ -17,7 +17,11 @@ Pdf files of many examples of Fourier lattices- used in the supplementary to evi
 
 ### Relevant julia files: 
 1. ./symeigs/wyckoffs_dict.jl : Enumerates the wyckoff positions for each space group that maintain C_n rotational symmetry
-2. ./plotting_utilities.jl
-3. ./plotting_supercells.jl
+2. ./plotting_utilities.jl : Methods for plotting Fourier lattices at high resolution. One passes a Fourier lattice "flat" along with
+   real space lattice vectors, "Rs" and either an isovalue "isoval" or filling "filling". If the keyword argument "in_polygon" is set to
+   true, the lattice is only plotted within the cell "c", which may be a Wigner-Seitz cell, for instance.
+3. ./plotting_supercells.jl : Methods for plotting a lattice composed of an interior Fourier lattice and an external cladding. This is relevant for
+   our corner charge simulations.
+4. ./makelattices.jl : Methods for creating Fourier lattices and input files for subsequent MPB calculations. 
 
 
