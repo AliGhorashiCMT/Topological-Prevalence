@@ -40,6 +40,11 @@ Tight binding models for more tractable corner charge simulations (not used in t
    true, the lattice is only plotted within the cell "c", which may be a Wigner-Seitz cell, for instance.
 3. ./plotting_supercells.jl : Methods for plotting a lattice composed of an interior Fourier lattice and an external cladding. This is relevant for
    our corner charge simulations.
-4. ./makelattices.jl : Methods for creating Fourier lattices and input files for subsequent MPB calculations. 
+4. ./makelattices.jl : Methods for creating Fourier lattices and input files for subsequent MPB calculations.
+
+---
+
+### Relevant CTL/SCM/Bash/SLURM files
+
 
 
