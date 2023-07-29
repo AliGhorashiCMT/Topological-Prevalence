@@ -1,5 +1,5 @@
 # Topological Prevalence
-
+---
 ### Directory: Fig1_Lattice_Pdfs
 ### Contents: 
 Pdf files of Fourier lattices with different spacegroup symmetries. The four additional sg 16 and sg 17 examples
@@ -31,6 +31,7 @@ Figures displaying the the locations of nodal points within the Brillouin zone.
 ### Contents:
 Tight binding models for more tractable corner charge simulations (not used in the paper but more for sanity checking). 
 
+---
 
 ### Relevant julia files: 
 1. ./symeigs/wyckoffs_dict.jl : Enumerates the wyckoff positions for each space group that maintain C_n rotational symmetry
