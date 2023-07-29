@@ -1,5 +1,5 @@
 # Topological Prevalence
----
+
 ### Directory: Fig1_Lattice_Pdfs
 ### Contents: 
 Pdf files of Fourier lattices with different spacegroup symmetries. The four additional sg 16 and sg 17 examples
