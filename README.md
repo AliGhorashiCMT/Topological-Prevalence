@@ -48,5 +48,13 @@ MPB calculations of gyroelectric Fourier lattices in the presence of a magnetic 
 
 ### Relevant CTL/SCM/Bash/SLURM files
 
+---
+
+### JLD2 Files
+We have included JLD2 files with the necessary input file data for each spacegroup, sg, in ./symeigs/output/sg$sg/eps1/te/
+(Note that for all other dielectric contrasts and the TM mode input files, the only difference is the value of epsin)
+
+
+
 
 
