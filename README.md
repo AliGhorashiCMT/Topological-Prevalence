@@ -45,6 +45,8 @@ reciprocal lattice vectors **G** and `orbitcoefs` the corresponding Fourier basi
 filling fraction of the Fourier lattice). 
 `plotting_utilities.jl` includes tools to plot the Fourier lattices from `Rsv`, `flatv` and `isovalv`.
 
+For .jld2 files with processed data, we include here a publicly accessible Dropbox link (due to Github repo size restrictions): https://www.dropbox.com/sh/ie9ddihefkhlyqp/AACeS1_czQ_Mlje_JRS1lv1Ca?dl=0
+
 
 
 
