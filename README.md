@@ -28,6 +28,7 @@ Apart from this, we highlight a selection of other especially relevant Julia fil
 4. **`./makelattices.jl`:** Methods for creating Fourier lattices and input files for subsequent MPB calculations.
 5. **./Sobol Fourier Lattices.ipynb**: Methods for creating Fourier lattices sampled from a Sobol space-filling sequence. Used to validate the diversity of
    our main text results.
+6. **./Corner Charge Tables and Sanity Checks.ipynb**: Sanity checks of our polarization and corner charge formulas. 
 
 
 ## Relevant CTL/SCM/Bash/SLURM files
