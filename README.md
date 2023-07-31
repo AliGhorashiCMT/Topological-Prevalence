@@ -7,12 +7,12 @@ This repository is accompaniment to the preprint
 
 A brief description of certain especially relevant directories is included below:
 - `Fig1_Lattice_Pdfs`: .pdf files of Fourier lattices with different plane group symmetries.
-The four additional sg 16 and sg 17 examples (denoted `Sg16-example-$i` or `Sg17-example-$i`) are the lattices in Figure 1 that serve to demonstrate the size of our dataset.
+The four additional sg 16 and sg 17 examples (denoted `Sg16-example-$i` or `Sg17-example-$i`) are the lattices in Figure 1 that serve to demonstrate the size of our data set.
 Note that the sg16 ones are not in the current version of the paper.
 - `Fig2_Statistics_Figs`: .pdf files of the bar graphs used in Figure 2.
 - `Fig3_Statistics_Figs`: .pdf files of the bar graphs used in Figure 3.
-- `Sheets_of_Lattices`: .pdf files of many examples of Fourier lattices- used in the supplementary to evince diversity of our dataset.
-- For each plane group, `sg`, a .pdf file with named `sg$sg-sheets.pdf` is included, illustrating with 96 randomly sampled Fourier lattice examples (displayed in a 12x8 grid).
+- `Sheets_of_Lattices`: .pdf files of many examples of Fourier lattices- used in the supplementary to illustrate the diversity of our data set.
+For each plane group, `sg`, a .pdf file with named `sg$sg-sheets.pdf` is included, illustrating 96 randomly selected Fourier lattice examples from a data set(displayed in a 12x8 grid).
 `Sobol_Figs`: .pdf files displaying comparisons of statistics aggregated from random Fourier lattice sampling and Sobol Fourier lattice sampling.
 - `Fillings_Figs`: .pdf files displaying our statistics of photonic topology as a function of filling fraction, defined as $\Omega_{\text{in}}/\Omega$, where $\Omega$ is the are of the unit cell and $\Omega_{\text{in}}$ is the area of the 2D Fourier lattice with $\varepsilon = \varepsilon_{\text{in}}$.
 - `Nodal_Point_Figs`: Figures displaying the the locations of nodal points within the Brillouin zone. 
