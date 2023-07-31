@@ -26,6 +26,8 @@ Apart from this, we highlight a selection of other especially relevant Julia fil
 3. **`./plotting_supercells.jl`:** Methods for plotting a lattice composed of an interior Fourier lattice and an external cladding. This is relevant for
    our corner charge simulations.
 4. **`./makelattices.jl`:** Methods for creating Fourier lattices and input files for subsequent MPB calculations.
+5. **./Sobol Fourier Lattices.ipynb**: Methods for creating Fourier lattices sampled from a Sobol space-filling sequence. Used to validate the diversity of
+   our main text results.
 
 
 ## Relevant CTL/SCM/Bash/SLURM files
