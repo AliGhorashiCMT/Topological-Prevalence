@@ -7,7 +7,7 @@ This repository is accompaniment to the preprint
 
 A brief description of certain especially relevant directories is included below:
 - **`Fig1_Lattice_Pdfs`:** .pdf files of Fourier lattices with different plane group symmetries.
-The four additional sg 16 and sg 17 examples (denoted `Sg16-example-$i` or `Sg17-example-$i`) are the lattices in Figure 1 that serve to demonstrate the size of our data set.
+The four additional examples from plane groups 16 and 17 (`Sg16-example-$i` or `Sg17-example-$i`) are the lattices in Figure 1 that serve to demonstrate the size of our data set.
 Note that the sg16 ones are not in the current version of the paper.
 - **`Fig2_Statistics_Figs`:** .pdf files of the bar graphs used in Figure 2.
 - **`Fig3_Statistics_Figs`:** .pdf files of the bar graphs used in Figure 3.
