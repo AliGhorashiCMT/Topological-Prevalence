@@ -13,8 +13,8 @@ Spacegroup 15: id=8928, mode=tm, fragile bands:9-10, id=2587, mode=tm, fragile b
 
 ## Bash files: 
 
-berry-ks-loops.sh : Path through one quadrant of a c4 symmetric Brillouin zone.
+**berry-ks-loops.sh** : Path through one quadrant of a c4 symmetric Brillouin zone.
 
-berry-ks-loops-c2.sh : Path through one half of a c2 symmetric Brillouin zone. 
+**berry-ks-loops-c2.sh** : Path through one half of a c2 symmetric Brillouin zone. 
 
-berry-ks-loops-c6.sh : Path through one 1/6th of a c6 symmetric Brillouin zone. 
+**berry-ks-loops-c6.sh** : Path through one 1/6th of a c6 symmetric Brillouin zone. 
