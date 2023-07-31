@@ -19,7 +19,7 @@ Note that the sg16 ones are not in the current version of the paper.
 - `Tight Binding Models`: Tight binding models for more tractable corner charge simulations (not used in the paper but more for sanity checking).
 - `Time Reversal = False`: MPB calculations of gyroelectric Fourier lattices in the presence of a magnetic field.
 
-Apart from this, we highlight a set of other especially relevant Julia files for data-processing and illustration:
+Apart from this, we highlight a selection of other especially relevant Julia files, used mainly for data-processing and illustration:
 1. `./symeigs/wyckoffs_dict.jl`: Enumerates the Wyckoff positions for each space group that maintain $C_n$ rotational symmetry
 2. `./plotting_utilities.jl`: Methods for plotting Fourier lattices at high resolution. One passes a Fourier lattice `flat` along with
    real space lattice vectors, `Rs` and either an isovalue `isoval` or filling `filling`. If the keyword argument `in_polygon` is set to
