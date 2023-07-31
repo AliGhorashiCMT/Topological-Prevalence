@@ -51,6 +51,7 @@ ID 2: Origin: (1/2, 1/2)
 **Plane group p4gm**: 
 
 ID 1: Origin: (0, 0)
+
 ID 2: Origin: (1/2, 1/2)
 
 **Plane group p3**: 
