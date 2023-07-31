@@ -54,7 +54,7 @@ We have included .jld2 files with the necessary input file data for each spacegr
 To map the data stored in the JLD2 files to a Fourier lattice, simply `load(./symeigs/output/sg$sg/eps1/te/sg$sg-epsid1-res64-te-input.jld2)`. 
 This will give an object with three fields: `Rsv`, `flatv` and `isovalv`, each of which is a 10000 element vector. `Rsv` is a vector of 
 lattice vectors. Note that for every plane groups except for p2, p6, and c2mm, each element of `Rsv` will be the same, due to symmetry restrictions.
-`flatv` is a vector of elements of type ModulatedFourierLattice{2}. Each ModulatedFourierLattice object has fields orbits and orbitcoefs. Orbits are the 
+`flatv` is a vector of elements of type `ModulatedFourierLattice{2}`. Each ModulatedFourierLattice object has fields orbits and orbitcoefs. Orbits are the 
 reciprocal lattice vectors `G` and orbitcoefs the corresponding Fourier basis coefficients. `isovalv` is a vector of isovalues (which determine the
 filling of the Fourier lattice). Use `plotting_utilities.jl` to use `Rsv`, **flatv` and `isovalv` to plot the corresponding Fourier lattices. 
 
