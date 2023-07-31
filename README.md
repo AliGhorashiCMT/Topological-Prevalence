@@ -1,4 +1,7 @@
-# Code and data repository for "Prevalence of two-dimensional topological photonics"
+# Code and data repository
+
+This repository is accompaniment to the preprint
+> Ali Ghorashi, Sachin Vaidya, Mikael Rechtsman, Wladimir Benalcazar, Marin Soljačić, Thomas Christensen, *"Prevalence of two-dimensional photonic topology,"* [arXiv:2307.15701 (2023)](https://arxiv.org/abs/2307.15701).
 
 ## File structure and repository content
 
