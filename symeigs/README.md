@@ -4,7 +4,14 @@
 
 **corner_charges.jl** : This script includes all corner and polarization formulas. 
 
-**analyze_jlds.jl** : This script saves the statistics that we find interesting
+**analyze_jlds.jl** : This script reproduces all statistics related to stable and fragile topology reported in the main text and the supplement. As input, the script takes the space group number, $sg, and reads in .jld2 files with the relevant band summaries (these are the same .jld2 files for which we have provided a Dropbox link in the main directory). Then, a single .jld2 file, with filename sg$sg-data.jld2, is written for each plane group with the following attendant fields: 
+
+1. **trivial_count** : A vector for which each the element corresponding to an index, $n, is the number of samples with a trivial n'th multiplet 
+3. **fragile_count** : Same as (1) but for fragile bands
+4. **stable_count** : Same as (1) but for stably topological bands
+5. **cum_trivial_count** : Same as (1) but replace n'th multiplet with n'th cumulative multiplet
+6. **cum_fragile_count** : Same as (2) but replace n'th multiplet with n'th cumulative multiplet
+7. **cum_stable_count** : Same as (3) but replace n'th multiplet with n'th cumulative multiplet
 
 **runlattices-array-eps4and5.jl** and **runlattice-eps4and5.sh**: We originally ran calculations only for contrasts of 8, 12, and 16. Later on, we decided to accumulate statistics beyond this range. As such, we calculated symmetry data for contrasts of 24 and 32 as well. However, as we did not want to unnecessarily create additional input files (since the additional input files would have only had different values of $\varepsilon_{in}$, we wrote these two scripts to avoid doing so.
 
