@@ -52,7 +52,7 @@ reciprocal lattice vectors **G** and `orbitcoefs` the corresponding Fourier basi
 We host the results for each of these inputs as a series of .jld2 files on [Dropbox](https://www.dropbox.com/sh/ie9ddihefkhlyqp/AACeS1_czQ_Mlje_JRS1lv1Ca?dl=0).
 Each .jld2 file contains the results for a specific to plane group, `$sg`, `polarization`, `$mode`, and contrast indexed by `$epsid` has a file name of the format: `sg$sg-epsid$epsid-res64-$mode.jld2` `$epsid` of 1, 2, 3, 4, 5 corresponds to contrasts of 8, 12, 16, 24, and 32, respectively.
 After loading the .jld2 file, the relevant quantities are in the fields `summariesv` and `cumsummariesv`. The former has multiplet-by-multiplet data and the latter has cumulative multiplet data. Each are 10000 element vectors (stored in the same order as the lattices in the input .jld2 files). Each element of `summariesv` is an object of type `Vector{BandSummary}`. Each `BandSummary` object is a "summary" of pertinent data corresponding to a particular multiplet. In particular, one can access a field, `bar`, of each `BandSummary` object, `foo`, via `foo.bar`.
-Some fields of particular interest are `topology`, `n`- the symmetry vector and `brs`, the table of elementary band representations. From this data, all higher-order topology data may be derived (using scripts in `./symeigs/corner-charges.jl`). 
+Some fields of particular interest are `topology`, `n`- the symmetry vector and `brs`, the table of elementary band representations. From this data, all higher-order topology data may be derived (via the script in `./symeigs/corner-charges.jl`). 
 
 
 
