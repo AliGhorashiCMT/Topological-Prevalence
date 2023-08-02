@@ -36,18 +36,21 @@ TODO.
 
 ## Data files (.jld2)
 We have included .jld2 files with the necessary input file data for each plane group, sg, in `./symeigs/output/sg$sg/eps1/te/`
-(note that for all other dielectric contrasts and the TM mode input files, the only difference is the value of `epsin`). 
-To map the data stored in the .jld2 files to a Fourier lattice, simply `load(./symeigs/output/sg$sg/eps1/te/sg$sg-epsid1-res64-te-input.jld2)`. 
-This will give an object with three fields: `Rsv`, `flatv` and `isovalv`, each of which is a 10000 element vector. `Rsv` is a vector of 
-lattice vectors. Note that for every plane groups except for p2, p6, and c2mm, each element of `Rsv` will be the same, due to symmetry restrictions.
-`flatv` is a vector of elements of type `ModulatedFourierLattice{2}`. Each `ModulatedFourierLattice` object has fields `orbits` and `orbitcoefs`. `orbits` are the 
-reciprocal lattice vectors **G** and `orbitcoefs` the corresponding Fourier basis coefficients. `isovalv` is a vector of isovalues (which determine the
-filling fraction of the Fourier lattice). 
+(note that for all other dielectric contrasts and the TM mode input files, the only difference is the value of `epsin`).
+To load the data, launch Julia and execute the following code:
+```jl
+using JLD2
+data = load(./symeigs/output/sg$sg/eps1/te/sg$sg-epsid1-res64-te-input.jld2)
+```
+`data` will then contain three fields `Rsv`, `flatv` and `isovalv`, each a 10000 element vector:
+- `Rsv` is a vector of lattice vectors. Note that for every plane groups except for p2, p6, and c2mm, each element of `Rsv` will be the same, due to symmetry restrictions.
+- `flatv` is a vector of elements of type `ModulatedFourierLattice{2}`. Each `ModulatedFourierLattice` object has fields `orbits` and `orbitcoefs`. `orbits` are the 
+reciprocal lattice vectors **G** and `orbitcoefs` the corresponding Fourier basis coefficients.
+- `isovalv` is a vector of isovalues (which determine the filling fraction of the Fourier lattice). 
 `plotting_utilities.jl` includes tools to plot the Fourier lattices from `Rsv`, `flatv` and `isovalv`.
 
-For .jld2 files with processed data, we include here a publicly accessible Dropbox link (due to Github repo size restrictions): 
-> https://www.dropbox.com/sh/ie9ddihefkhlyqp/AACeS1_czQ_Mlje_JRS1lv1Ca?dl=0.
-A .jld2 file corresponding to plane group, `$sg`, `polarization`, `$mode`, and contrast indexed by `$epsid` has a file name of the format: `sg$sg-epsid$epsid-res64-$mode.jld2` `$epsid` of 1, 2, 3, 4, 5 corresponds to contrasts of 8, 12, 16, 24, and 32, respectively. After loading the .jld2 file, the relevant quantities are in the fields `summariesv` and `cumsummariesv`.
+We host the results for each of these inputs as a series of .jld2 files on [Dropbox](https://www.dropbox.com/sh/ie9ddihefkhlyqp/AACeS1_czQ_Mlje_JRS1lv1Ca?dl=0).
+Each .jld2 file contains the results for a specific to plane group, `$sg`, `polarization`, `$mode`, and contrast indexed by `$epsid` has a file name of the format: `sg$sg-epsid$epsid-res64-$mode.jld2` `$epsid` of 1, 2, 3, 4, 5 corresponds to contrasts of 8, 12, 16, 24, and 32, respectively. After loading the .jld2 file, the relevant quantities are in the fields `summariesv` and `cumsummariesv`.
 The former has multiplet-by-multiplet data and the latter has cumulative multiplet data. Each are 10000 element vectors (stored in the same order as the lattices in the input .jld2 files). Each element of summariesv is an object of type `Vector{BandSummary}`. Each BandSummary object is a "summary" of pertinent data corresponding to a particular multiplet. In particular, one can access a field, bar, of each BandSummary object, foo, via foo.bar. Some fields of particular interest are `topology`, `n`- the symmetry vector and `brs`, the table of elementary band representations. From this data, all higher-order topology data may be derived. 
 
 
