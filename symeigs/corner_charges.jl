@@ -302,6 +302,14 @@ function corner_sg9(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyck
         find_diff(n, irlabs, ["S₂"], ["Γ₁", "Γ₂"]),
         find_diff(n, irlabs,["S₂"] , ["Γ₁", "Γ₂"]),
         find_diff(n, irlabs, ["Y₁", "Y₂"],  ["Γ₁", "Γ₂"])
+    elseif wyckoff == WyckoffPosition(4, 'c', RVec([1/4, 1/4]))
+        find_diff(n, irlabs, ["S₁"], ["Γ₁", "Γ₂"]),
+        find_diff(n, irlabs,["S₂"] , ["Γ₁", "Γ₂"]),
+        find_diff(n, irlabs, ["Y₃", "Y₄"],  ["Γ₁", "Γ₂"])
+    elseif wyckoff == WyckoffPosition(4, 'c', RVec([1/4, -1/4]))
+        find_diff(n, irlabs, ["S₂"], ["Γ₁", "Γ₂"]),
+        find_diff(n, irlabs,["S₁"] , ["Γ₁", "Γ₂"]),
+        find_diff(n, irlabs, ["Y₃", "Y₄"],  ["Γ₁", "Γ₂"])  
     end
     return corner_c2(diffX, diffY, diffM)
 end
@@ -317,6 +325,14 @@ function polarization_sg9(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}
             find_diff(n, irlabs, ["S₂"], ["Γ₁", "Γ₂"]),
             find_diff(n, irlabs,["S₂"] , ["Γ₁", "Γ₂"]),
             find_diff(n, irlabs, ["Y₁", "Y₂"],  ["Γ₁", "Γ₂"])
+        elseif wyckoff == WyckoffPosition(4, 'c', RVec([1/4, 1/4]))
+            find_diff(n, irlabs, ["S₁"], ["Γ₁", "Γ₂"]),
+            find_diff(n, irlabs,["S₂"] , ["Γ₁", "Γ₂"]),
+            find_diff(n, irlabs, ["Y₃", "Y₄"],  ["Γ₁", "Γ₂"])
+        elseif wyckoff == WyckoffPosition(4, 'c', RVec([1/4, -1/4]))
+            find_diff(n, irlabs, ["S₂"], ["Γ₁", "Γ₂"]),
+            find_diff(n, irlabs,["S₁"] , ["Γ₁", "Γ₂"]),
+            find_diff(n, irlabs, ["Y₃", "Y₄"],  ["Γ₁", "Γ₂"])  
         end
     return polarization_c2(diffY + diffM, diffX + diffM)
 end
@@ -326,7 +342,6 @@ function corner_sg16(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyc
         diff1 = find_diff(n, irlabs, ["M₁"],  ["Γ₁"])
         diff11 = 2*find_diff(n, irlabs, [""],  ["Γ₃Γ₅"])
         return corner_c6(diff1+diff11, diff2)
-    end
 end
 
 function corner_sg17(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
@@ -346,21 +361,27 @@ function polarization_sg17(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString
     return zeros(2)
 end
 
-function corner_sg13(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
-    diffK =        
-        if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
-            find_diff(n, irlabs, ["K₂"],  ["Γ₂Γ₃"])
+function corner_sg13(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])); orientation::Union{Val{'u'}, Val{'d'}}=Val('u'))
+    diffK = (orientation == Val('u')) ? (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+                find_diff(n, irlabs, ["K₂"],  ["Γ₂Γ₃"])
+            elseif wyckoff == WyckoffPosition(1, 'b', RVec([1/3, 2/3]))
+                find_diff(n, irlabs, ["K₁"],  ["Γ₂Γ₃"])
+            elseif wyckoff == WyckoffPosition(1, 'c', RVec([2/3, 1/3]))
+                find_diff(n, irlabs, ["K₃"],  ["Γ₂Γ₃"])
+            end) :
+        (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+            find_diff(n, irlabs, ["KA₂"],  ["Γ₂Γ₃"])
         elseif wyckoff == WyckoffPosition(1, 'b', RVec([1/3, 2/3]))
-            find_diff(n, irlabs, ["K₁"],  ["Γ₂Γ₃"])
+            find_diff(n, irlabs, ["KA₃"],  ["Γ₂Γ₃"])
         elseif wyckoff == WyckoffPosition(1, 'c', RVec([2/3, 1/3]))
-            find_diff(n, irlabs, ["K₃"],  ["Γ₂Γ₃"])
-        end
+            find_diff(n, irlabs, ["KA₁"],  ["Γ₂Γ₃"])
+        end)
+
     corner_c3(diffK)
 end
 
-function polarization_sg13(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
-    diffK1, diffK2 = 
-        if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+function polarization_sg13(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])); orientation::Union{Val{'u'}, Val{'d'}}=Val('u'))
+    diffK1, diffK2 = (orientation == Val('u')) ? (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
             find_diff(n, irlabs, ["K₁"],  ["Γ₁"]), 
             find_diff(n, irlabs, ["K₂"],  ["Γ₂Γ₃"])
         elseif wyckoff == WyckoffPosition(1, 'b', RVec([1/3, 2/3]))
@@ -369,25 +390,40 @@ function polarization_sg13(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString
         elseif wyckoff == WyckoffPosition(1, 'c', RVec([2/3, 1/3]))
             find_diff(n, irlabs, ["K₂"],  ["Γ₁"]),
             find_diff(n, irlabs, ["K₃"],  ["Γ₂Γ₃"])
+        end) :
+        if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+            find_diff(n, irlabs, ["KA₁"],  ["Γ₁"]), 
+            find_diff(n, irlabs, ["KA₂"],  ["Γ₂Γ₃"])
+        elseif wyckoff == WyckoffPosition(1, 'b', RVec([1/3, 2/3]))
+            find_diff(n, irlabs, ["KA₂"],  ["Γ₁"]),
+            find_diff(n, irlabs, ["KA₃"],  ["Γ₂Γ₃"])
+        elseif wyckoff == WyckoffPosition(1, 'c', RVec([2/3, 1/3]))
+            find_diff(n, irlabs, ["KA₃"],  ["Γ₁"]),
+            find_diff(n, irlabs, ["KA₁"],  ["Γ₂Γ₃"])
         end
     polarization_c3(diffK1, diffK2)
 end
 
-function corner_sg14(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
-    diffK = 
-        if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+function corner_sg14(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])); orientation::Union{Val{'u'}, Val{'d'}}=Val('u'))
+    diffK = (orientation == Val('u')) ? (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
             find_diff(n, irlabs, ["K₂"], ["Γ₃"])
         elseif wyckoff == WyckoffPosition(1, 'b', RVec([1/3, 2/3]))
             find_diff(n, irlabs, ["K₁"], ["Γ₃"])
         elseif wyckoff == WyckoffPosition(1, 'c', RVec([2/3, 1/3]))
             find_diff(n, irlabs, ["K₃"], ["Γ₃"])
-        end
+        end) : 
+        (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+            find_diff(n, irlabs, ["K₃"], ["Γ₃"])
+        elseif wyckoff == WyckoffPosition(1, 'b', RVec([1/3, 2/3]))
+            find_diff(n, irlabs, ["K₂"], ["Γ₃"])
+        elseif wyckoff == WyckoffPosition(1, 'c', RVec([2/3, 1/3]))
+            find_diff(n, irlabs, ["K₁"], ["Γ₃"])
+        end ) 
     return corner_c3(diffK)
 end
 
-function polarization_sg14(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
-    diffK1, diffK2 = 
-        if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+function polarization_sg14(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])); orientation::Union{Val{'u'}, Val{'d'}}=Val('u'))
+    diffK1, diffK2 = (orientation == Val('u')) ? (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
             find_diff(n, irlabs, ["K₁"],  ["Γ₁", "Γ₂"]), 
             find_diff(n, irlabs, ["K₂"],  ["Γ₃"])
         elseif wyckoff == WyckoffPosition(1, 'b', RVec([1/3, 2/3]))
@@ -396,25 +432,38 @@ function polarization_sg14(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString
         elseif wyckoff == WyckoffPosition(1, 'c', RVec([2/3, 1/3]))
             find_diff(n, irlabs, ["K₂"], ["Γ₁", "Γ₂"]),
             find_diff(n, irlabs, ["K₃"],  ["Γ₃"])
-        end
+        end) : (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+            find_diff(n, irlabs, ["K₁"],  ["Γ₁", "Γ₂"]), 
+            find_diff(n, irlabs, ["K₃"],  ["Γ₃"])
+        elseif wyckoff == WyckoffPosition(1, 'b', RVec([1/3, 2/3]))
+            find_diff(n, irlabs, ["K₃"],  ["Γ₁", "Γ₂"]),
+            find_diff(n, irlabs, ["K₂"],  ["Γ₃"])
+        elseif wyckoff == WyckoffPosition(1, 'c', RVec([2/3, 1/3]))
+            find_diff(n, irlabs, ["K₂"], ["Γ₁", "Γ₂"]),
+            find_diff(n, irlabs, ["K₁"],  ["Γ₃"])
+        end)
     return polarization_c3(diffK1, diffK2)
 end
 
-function corner_sg15(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
-    diffK = 
-        if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+function corner_sg15(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])); orientation::Union{Val{'u'}, Val{'d'}}=Val('u'))
+    diffK = (orientation == Val('u')) ? (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
             find_diff(n, irlabs, ["K₃"], ["Γ₃"])
         elseif wyckoff == WyckoffPosition(2, 'b', RVec([1/3, 2/3]))
             find_diff(n, irlabs, ["K₁", "K₂"], ["Γ₃"])
         elseif wyckoff == WyckoffPosition(2, 'c', RVec([2/3, 1/3]))
             find_diff(n, irlabs, ["K₃"], ["Γ₃"])
-        end
+        end) : (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+            find_diff(n, irlabs, ["KA₃"], ["Γ₃"])
+        elseif wyckoff == WyckoffPosition(2, 'b', RVec([1/3, 2/3]))
+            find_diff(n, irlabs, ["KA₃"], ["Γ₃"])
+        elseif wyckoff == WyckoffPosition(2, 'c', RVec([2/3, 1/3]))
+            find_diff(n, irlabs, ["KA₁", "KA₂"], ["Γ₃"])
+            end)
     return corner_c3(diffK)
 end
 
-function polarization_sg15(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])))
-    diffK1, diffK2 = 
-    if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+function polarization_sg15(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString}, wyckoff::WyckoffPosition{2}=WyckoffPosition(1, 'a', RVec([0, 0])); orientation::Union{Val{'u'}, Val{'d'}}=Val('u'))
+    diffK1, diffK2 = (orientation == Val('u')) ? (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
         find_diff(n, irlabs, ["K₁", "K₂"], ["Γ₁", "Γ₂"]), 
         find_diff(n, irlabs, ["K₃"], ["Γ₃"])
     elseif wyckoff == WyckoffPosition(2, 'b', RVec([1/3, 2/3]))
@@ -423,7 +472,16 @@ function polarization_sg15(n::Vector{<:Integer}, irlabs::Vector{<:AbstractString
     elseif wyckoff == WyckoffPosition(2, 'c', RVec([2/3, 1/3]))
         find_diff(n, irlabs, ["K₃"], ["Γ₁", "Γ₂"]), 
         find_diff(n, irlabs, ["K₃"], ["Γ₃"])
-    end
+    end) : (if wyckoff == WyckoffPosition(1, 'a', RVec([0, 0]))
+        find_diff(n, irlabs, ["KA₁", "KA₂"], ["Γ₁", "Γ₂"]), 
+        find_diff(n, irlabs, ["KA₃"], ["Γ₃"])
+    elseif wyckoff == WyckoffPosition(2, 'b', RVec([1/3, 2/3]))
+        find_diff(n, irlabs, ["KA₃"], ["Γ₁", "Γ₂"]), 
+        find_diff(n, irlabs, ["KA₃"], ["Γ₃"])
+    elseif wyckoff == WyckoffPosition(2, 'c', RVec([2/3, 1/3]))
+        find_diff(n, irlabs, ["KA₃"], ["Γ₁", "Γ₂"]), 
+        find_diff(n, irlabs, ["KA₁", "KA₂"], ["Γ₃"])
+            end)
     
     return polarization_c3(diffK1, diffK2)
 end
