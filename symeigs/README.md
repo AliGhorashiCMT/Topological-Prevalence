@@ -1,10 +1,10 @@
 # Brief Description of Files in this Folder
 
-**make_input_jlds.jl** : This script puts the real space lattice vectors, **Rs** the fourier lattice parameters, **flat**, and the isovalues, **isoval** for each Fourier lattice in jld files (saved as vectors of lattice vectors, **Rsv**, ModulatedFourierLattice{2}s, **flatv** and isovalues, **isovalv**).
+**`make_input_jlds.jl`** : This script puts the real space lattice vectors, **Rs** the Fourier lattice parameters, **flat**, and the isovalues, **isoval** for each Fourier lattice in jld2 files (saved as vectors of lattice vectors, **Rsv**, ModulatedFourierLattice{2}s, **flatv** and isovalues, **isovalv**).
 
-**corner_charges.jl** : This script includes all corner and polarization formulas. 
+**`corner_charges.jl`** : This script includes all corner and polarization formulas. 
 
-**analyze_jlds.jl** : This script reproduces all statistics related to stable and fragile topology reported in the main text and the supplement. As input, the script takes the space group number, $sg, and reads in .jld2 files with the relevant band summaries (these are the same .jld2 files for which we have provided a Dropbox link in the main directory). Then, a single .jld2 file, with filename sg$sg-data.jld2, is written for each plane group with the following attendant fields: 
+**`analyze_jlds.jl`** : This script reproduces all statistics related to stable and fragile topology reported in the main text and the supplement. As input, the script takes the space group number, $sg, and reads in .jld2 files with the relevant band summaries (these are the same .jld2 files for which we have provided a Dropbox link in the main directory). Then, a single .jld2 file, with filename sg$sg-data.jld2, is written for each plane group with the following attendant fields: 
 
 1. **trivial_count** : A vector for which each the element corresponding to an index, $n, is the number of samples with a trivial n'th multiplet 
 3. **fragile_count** : Same as (1) but for fragile bands
