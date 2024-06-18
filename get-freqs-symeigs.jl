@@ -5,6 +5,17 @@ function logs_to_dispersion(logstr::String, mode::String)
     filtered_split_log = [x * "\n" for x in filtered_split_log]
     return prod(filtered_split_log)
 end;
+function logs_to_dispersion(logstr::String)
+	mode = if contains(logstr, "run-type=\"te\"") 
+			"te"
+		elseif contains(logstr, "run-type=\"tm\"")
+		 	"tm"
+		else
+			error("Could not determine mode")
+		end
+	logs_to_dispersion(logstr, mode)
+end
+
 function logs_to_symeigs(logstr::String)
     split_log = split(logstr, "\n");
     filtered_split_log = filter(x -> startswith(x, "sym-eigs:"), split_log)
