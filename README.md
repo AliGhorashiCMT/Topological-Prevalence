@@ -32,7 +32,9 @@ Apart from this, we highlight a selection of other especially relevant Julia fil
 7. **`./symeigs_from_io.jl`,`./get-freqs-symeigs.jl`:** Functionality for obtaining symmetry eigenvalues and frequencies from MPB log files. The first Julia file
    includes an extension of **`_read_symdata`**, an **`MPBUtils`** method for creating a dictionary of symmetry eigenvalues. The MPBUtils version depends on a particular
    way of storing the data in files appended by **`-dispersion.out`** and **`-symeigs.out`** extensions, so we include an extension of it that can just get the full log
-   file output. 
+   file output.
+8. **`Resolution_Sweep.jl`**: Analysis of the dependence of our statistics on MPB spatial resolution and the internal tolerance parameter in our code, atol. The resolution is sweeped up to
+   256x256 and the tolerance parameter is sweeped from 1e-2 to 1e-1. The tables in the notebook are given for worst case scenarios, for plane groups p3 and p6. 
 
 
 ## Relevant CTL/SCM/Bash/SLURM files
