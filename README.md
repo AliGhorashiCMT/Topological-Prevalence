@@ -34,7 +34,9 @@ Apart from this, we highlight a selection of other especially relevant Julia fil
    way of storing the data in files appended by **`-dispersion.out`** and **`-symeigs.out`** extensions, so we include an extension of it that can just get the full log
    file output.
 8. **`Resolution_Sweep.jl`**: Analysis of the dependence of our statistics on MPB spatial resolution and the internal tolerance parameter in our code, atol. The resolution is sweeped up to
-   256x256 and the tolerance parameter is sweeped from 1e-2 to 1e-1. The tables in the notebook are given for worst case scenarios, for plane groups p3 and p6. 
+   256x256 and the tolerance parameter is sweeped from 1e-2 to 1e-1. The tables in the notebook are given for worst case scenarios, for plane groups p3 and p6.
+9. **`High Symmetry Points and Labels for Supplement.ipynb`**: Labeled high symmetry points in real space (Wyckoff positions) and reciprocal space (high symmetry k-vectors). Creates the
+   figures for `Supplemental Figure S6` in the paper. 
 
 
 ## Relevant CTL/SCM/Bash/SLURM files
