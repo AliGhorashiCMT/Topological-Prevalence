@@ -36,7 +36,8 @@ Apart from this, we highlight a selection of other especially relevant Julia fil
 8. **`Resolution_Sweep.jl`**: Analysis of the dependence of our statistics on MPB spatial resolution and the internal tolerance parameter in our code, atol. The resolution is sweeped up to
    256x256 and the tolerance parameter is sweeped from 1e-2 to 1e-1. The tables in the notebook are given for worst case scenarios, for plane groups p3 and p6.
 9. **`High Symmetry Points and Labels for Supplement.ipynb`**: Labeled high symmetry points in real space (Wyckoff positions) and reciprocal space (high symmetry k-vectors). Creates the
-   figures for `Supplemental Figure S6` in the paper. 
+   figures for `Supplemental Figure S6` in the paper.
+10. **`MPI_vs_No_MPI_data.ipynb`**: Validation of how outputs in MPB are given with and without MPI. This validates how we plot the corner charges (since those calculations are parallelized)
 
 
 ## Relevant CTL/SCM/Bash/SLURM files
